@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="apptheme" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:background">@color/blue</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <style name="large" parent="@style/TextAppearance.Wearable.Large">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="medium" parent="@style/TextAppearance.Wearable.Medium">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="small" parent="@style/TextAppearance.Wearable.Small">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+</resources>
