@@ -19,6 +19,7 @@ public class MainActivity extends Activity
     String TAG = "wear device";
     weatherChange receiver;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
         {
@@ -30,12 +31,14 @@ public class MainActivity extends Activity
             populateUI();
         }
 
+
     @Override
     protected void onDestroy()
         {
             LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
             super.onDestroy();
         }
+
 
     void populateUI()
         {
@@ -49,14 +52,14 @@ public class MainActivity extends Activity
             if (preferences.getWeathererror() != null)
                 {
                     temp.setText(preferences.getWeathererror());
-                    sendMsgToFetchData();
+                    MainActivity.sendMsgToFetchData(this);
                     return;
                 }
             WeatherModel weatherModel = preferences.getWeatherInfo();
             if (weatherModel.maxTemp == null)
                 {
                     temp.setText("No weather data please refresh");
-                    sendMsgToFetchData();
+                    MainActivity.sendMsgToFetchData(this);
                     return;
                 }
             Log.d("watch", "string date " + dateString);
@@ -66,11 +69,16 @@ public class MainActivity extends Activity
                     null, null);
 
         }
-void sendMsgToFetchData(){
-    Intent intent=new Intent(this,WeatherListener.class);
-    intent.setAction(WeatherListener.WEATHER_ACTION_FETCH);
-    startService(intent);
-}
+
+
+    public static void sendMsgToFetchData(Context context)
+        {
+            Intent intent = new Intent(context, WeatherListener.class);
+            intent.setAction(WeatherListener.WEATHER_ACTION_FETCH);
+            context.startService(intent);
+        }
+
+
     class weatherChange extends BroadcastReceiver
     {
         @Override

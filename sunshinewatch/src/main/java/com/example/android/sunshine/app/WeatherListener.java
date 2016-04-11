@@ -118,8 +118,17 @@ public class WeatherListener extends WearableListenerService
                 }
             if (latestDate != 0)
                 {
-                    parseData(selectedMap);
-                    sendLocalNotification();
+                    final DataMap finalSelectedMap = selectedMap;
+                    new Thread(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                            {
+                                parseData(finalSelectedMap);
+                                sendLocalNotification();
+                            }
+                    }).start();
+
                 }
         }
 
